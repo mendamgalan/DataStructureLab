@@ -1,0 +1,1 @@
+INDEX VERSION 1.134+D:\Data structure, algorithms\lab1\.metadata\.plugins\org.eclipse.jdt.core

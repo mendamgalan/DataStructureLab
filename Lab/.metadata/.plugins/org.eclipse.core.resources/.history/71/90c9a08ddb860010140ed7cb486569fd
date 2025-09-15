@@ -1,0 +1,104 @@
+package lab1;
+
+import java.util.Scanner;
+
+public class TestMyArrayLinearList {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter capacity of the list: ");
+        int capacity = sc.nextInt();
+
+        MyArrayLinearList list = new MyArrayLinearList(capacity);
+
+        int choice;
+        do {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Add element");
+            System.out.println("2. Insert element at index");
+            System.out.println("3. Remove element at index");
+            System.out.println("4. Display list");
+            System.out.println("5. Get element at index");
+            System.out.println("6. Find max");
+            System.out.println("7. Find min");
+            System.out.println("8. Find sum");
+            System.out.println("9. Find average");
+            System.out.println("10. Remove odd numbers");
+            System.out.println("11. Sort list");
+            System.out.println("0. Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter element: ");
+                    int elem = sc.nextInt();
+                    list.add(elem);
+                    break;
+                case 2:
+                    System.out.print("Enter index: ");
+                    int idx = sc.nextInt();
+                    System.out.print("Enter element: ");
+                    elem = sc.nextInt();
+                    list.insert(idx, elem);
+                    break;
+                case 3:
+                    System.out.print("Enter index to remove: ");
+                    idx = sc.nextInt();
+                    list.remove(idx);
+                    break;
+                case 4:
+                    list.display();
+                    break;
+                case 5:
+                    System.out.print("Enter index: ");
+                    idx = sc.nextInt();
+                    try {
+                        System.out.println("Element = " + list.get(idx));
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+                case 6:
+                    try {
+                        System.out.println("Max = " + list.max());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+                case 7:
+                    try {
+                        System.out.println("Min = " + list.min());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+                case 8:
+                    System.out.println("Sum = " + list.sum());
+                    break;
+                case 9:
+                    try {
+                        System.out.println("Average = " + list.average());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+                case 10:
+                    list.removeOdd();
+                    System.out.println("Odd numbers removed.");
+                    break;
+                case 11:
+                    list.sort();
+                    System.out.println("List sorted.");
+                    break;
+                case 0:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        } while (choice != 0);
+
+        sc.close();
+    }
+}
+
