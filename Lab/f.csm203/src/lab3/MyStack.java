@@ -20,12 +20,54 @@ public class MyStack extends ArrayLinearList implements Stack {
         return remove(size() - 1);
     }
 
+    public MyStack combineStack(MyStack otherStack) {
+        MyStack temp = new MyStack();
+        while (!otherStack.empty()) {
+            temp.push(otherStack.pop());
+        }
+        while (!temp.empty()) {
+            this.push(temp.pop());
+        }
+        return this;
+    }
+
+    public MyStack[] splitStack() {
+        int halfSize = size() / 2;
+        MyStack firstHalf = new MyStack();
+        MyStack secondHalf = new MyStack();
+        MyStack temp = new MyStack();
+
+        while (!empty()) {
+            temp.push(pop());
+        }
+
+        for (int i = 0; i < halfSize; i++) {
+            firstHalf.push(temp.pop());
+        }
+
+        while (!temp.empty()) {
+            secondHalf.push(temp.pop());
+        }
+
+        return new MyStack[]{firstHalf, secondHalf};
+    }
+
     public static void main(String[] args) {
         MyStack stack = new MyStack();
         stack.push(1);
         stack.push(2);
-        System.out.println(stack.peek());
-        System.out.println(stack.pop());
-        System.out.println(stack.peek());
+        stack.push(3);
+        stack.push(4);
+
+        MyStack otherStack = new MyStack();
+        otherStack.push(5);
+        otherStack.push(6);
+
+        stack.combineStack(otherStack);
+        System.out.println("Top after combine: " + stack.peek());
+
+        MyStack[] halves = stack.splitStack();
+        System.out.println("First half top: " + halves[0].peek());
+        System.out.println("Second half top: " + halves[1].peek());
     }
 }
